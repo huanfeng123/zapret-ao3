@@ -7,6 +7,10 @@
 # Keys must be a single word (letters/digits/underscore), because the
 # script parses them as simple identifiers. You can add or remove lines.
 
+### AO3
+AO3Main               = "https://archiveofourown.org"
+AO3Works              = "https://archiveofourown.org/works"
+
 ### Discord
 DiscordMain           = "https://discord.com"
 DiscordGateway        = "https://gateway.discord.gg"

@@ -16,6 +16,7 @@ cloudflarestorage.com
 cloudflarestream.com
 cloudflaretest.com
 cloudfront.net
+archiveofourown.org
 dis.gd
 discord-attachments-uploads-prd.storage.googleapis.com
 discord.app

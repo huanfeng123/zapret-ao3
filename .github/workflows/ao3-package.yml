@@ -1,0 +1,48 @@
+name: Build AO3 Windows package
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "general (AO3).bat"
+      - "lists/**"
+      - "utils/**"
+      - "service.bat"
+      - ".service/version.txt"
+      - "README-AO3-ZH.md"
+      - "tests/**"
+      - ".github/workflows/ao3-package.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check AO3 support files
+        shell: pwsh
+        run: ./tests/ao3-support.ps1
+
+  package:
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create one ZIP archive
+        run: |
+          mkdir zapret-ao3-windows
+          cp -r bin lists utils .service zapret-ao3-windows/
+          cp ./*.bat LICENSE.txt README.md README-AO3-ZH.md zapret-ao3-windows/
+          zip -qr zapret-ao3-windows.zip zapret-ao3-windows
+
+      - name: Upload AO3 package
+        uses: actions/upload-artifact@v4
+        with:
+          name: zapret-ao3-windows
+          path: zapret-ao3-windows.zip
+          if-no-files-found: error
+          retention-days: 30
