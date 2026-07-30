@@ -28,5 +28,6 @@ Assert-Contains "service.bat" 'huanfeng123/zapret-ao3'
 Assert-Contains "service.bat" 'set "LOCAL_VERSION=1\.10\.0-ao3\.1"'
 Assert-Contains ".service/version.txt" '^1\.10\.0-ao3\.1\s*$'
 Assert-Contains ".github/workflows/ao3-package.yml" 'name:\s*zapret-ao3-windows'
+Assert-Contains ".github/workflows/ao3-package.yml" 'tag_name:\s*1\.10\.0-ao3\.1'
 
 Write-Host "AO3 support checks passed."

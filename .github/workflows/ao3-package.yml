@@ -15,7 +15,7 @@ on:
       - ".github/workflows/ao3-package.yml"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   validate:
@@ -46,3 +46,12 @@ jobs:
           path: zapret-ao3-windows.zip
           if-no-files-found: error
           retention-days: 30
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: 1.10.0-ao3.1
+          name: Zapret AO3 1.10.0-ao3.1
+          body: Windows AO3 bypass package based on Flowseal zapret-discord-youtube 1.10.0.
+          files: zapret-ao3-windows.zip
+          make_latest: true
